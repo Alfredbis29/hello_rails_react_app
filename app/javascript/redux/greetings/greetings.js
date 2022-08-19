@@ -1,6 +1,6 @@
 import Axios from 'axios';
 
-const FETCH_GREETING = 'hello-rails-react/greetings/FETCH_GREETING';
+const FETCH_GREETING = 'hello_rails_react_app/greetings/FETCH_GREETING';
 
 const fetchGreeting = (payload) => ({
   type: FETCH_GREETING,
@@ -10,8 +10,7 @@ const fetchGreeting = (payload) => ({
 const initialState = [];
 
 export const fetchGreetingApi = () => async (dispatch) => {
-  const returnValue = await Axios.get('/api/v1/greetings');
-  console.log('return value:', returnValue);
+  const returnValue = await Axios.get('http://127.0.0.1:3000/api/v1/greetings');
   const greeting = returnValue.data.message
   dispatch(fetchGreeting(greeting));
 };
