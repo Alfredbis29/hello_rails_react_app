@@ -1,27 +1,38 @@
-import Axios from 'axios';
+import axios from 'axios';
 
-const FETCH_GREETING = 'hello_rails_react_app/greetings/FETCH_GREETING';
+const GET_GREETING = 'hello_rails_react/greetings/GET_GREETING';
 
-const fetchGreeting = (payload) => ({
-  type: FETCH_GREETING,
-  payload,
+export const fetchGreetings = (payload) => ({
+    type: GET_GREETING,
+    payload,
 });
 
-const initialState = [];
+// export const getGreetingFromAPI = async (dispatch) => storeGreeting => {
+//  const { data } = await axios.get('http://127.0.0.1:3000/api/v1/greetings');
+//     try {
+//         dispatch(storeGreeting(data));
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
 
-export const fetchGreetingApi = () => async (dispatch) => {
-  const returnValue = await Axios.get('http://127.0.0.1:3000/api/v1/greetings');
-  const greeting = returnValue.data.message
-  dispatch(fetchGreeting(greeting));
+const initialState = {};
+
+export const fetchGreetingsApi = () => async (dispatch) => {
+    const response = await fetch('http://127.0.0.1:3000/api/v1/greetings');
+    const data = await response.json();
+    console.log(data);
+    dispatch(fetchGreetings(data));
 };
 
 const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case FETCH_GREETING:
-      return action.payload;
-    default:
-      return state;
-  }
+    switch(action.type) {
+        case GET_GREETING:
+            console.log(action);
+            return action.payload.greeting;
+        default:
+            return state;
+    }
 };
 
 export default reducer;

@@ -1,16 +1,15 @@
 import React from 'react'
-import Greetings from './Greetings'
 import { Provider } from 'react-redux'
-import  store from './redux/configureStore'
-
+import store from '../redux/configureStore'
+import Greeting from './Greetings'
 
 const App = () => {
   return (
     <Provider store={store}>
-      <div>
-        <h1>Hello world</h1>
-      <Greetings />
-    </div>
+      <div className='w-[80%] mx-auto my-4'>
+      <h1 className="text-4xl">Refresh the Get new Greetings</h1>
+        <Greeting />
+      </div>
     </Provider>
   )
 }
