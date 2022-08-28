@@ -7,7 +7,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <div className='w-[80%] mx-auto my-4'>
-      <h1 className="text-4xl">Refresh the Get new Greetings</h1>
+      <h1 className="text-4xl">Refresh to Get new Greetings</h1>
         <Greeting />
       </div>
     </Provider>
